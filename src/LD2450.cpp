@@ -176,8 +176,8 @@ int LD2450::ProcessSerialDataIntoRadarData(byte rec_buf[], int len)
                         target.speed = -target.speed;
 
 
-                    //CALCULATE DISTANCE
-                    target.distance = sqrt(pow(target.x, 2) +  pow(target.y, 2));
+                    // Distance is provided directly by the sensor in this frame field.
+                    target.distance = target.resolution;
 
                     // IF A RESOLUTION IS PRESENT THEN WE CAN ASSUME THAT A TARGET WAS FOUND
                     if(target.resolution != 0){
