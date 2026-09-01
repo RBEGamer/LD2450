@@ -34,13 +34,13 @@ The `RadarTarget` struct, contains all raw values returned from the sensor:
         int16_t x;               // X mm
         int16_t y;               // Y mm
         int16_t speed;           // cm/s
-        uint16_t resolution;     // mm
-        uint16_t distance;       // mm
+        uint16_t resolution;     // mm raw value from frame (kept for backwards compatibility)
+        uint16_t distance;       // mm (distance provided directly by sensor frame)
         bool valid;              // TRUE IF TARGET DETECTED
     } RadarTarget_t;
 ```
 
-In the current sensors firmware state (at least on my board), the `LD2450` always returns three targets. The current implementation extracts the `valid` flag by using the `resolution` field. If `resolution` is set to an value except than `0`, the target is marked as`valid` and detected. For more information about this specific implementation, please refer to `ProcessSerialDataIntoRadarData` function.
+In the current sensors firmware state (at least on my board), the `LD2450` always returns three targets. The current implementation extracts the `valid` flag by checking whether the frame distance value is non-zero. For backwards compatibility this same raw field is still exposed as `resolution`, while `distance` now mirrors the sensor-provided value directly.
 
 
 ## MINIMAL EXAMPLE

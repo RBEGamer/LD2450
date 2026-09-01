@@ -45,8 +45,8 @@ public:
         int16_t x;           // X mm
         int16_t y;           // Y mm
         int16_t speed;       // cm/s
-        uint16_t resolution; // mm
-        uint16_t distance; // mm calculated from  x y 
+        uint16_t resolution; // mm raw value from frame (kept for backwards compatibility)
+        uint16_t distance; // mm distance provided by sensor frame
         bool valid;
     } RadarTarget_t;
 
